@@ -18,5 +18,5 @@
   },
   "dependencies": {
     "ffi": "https://github.com/tjfontaine/node-ffi/tarball/searchpath"
-  },
+  }
 }
