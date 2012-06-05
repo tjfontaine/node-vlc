@@ -1,0 +1,22 @@
+{
+  "name": "vlc",
+  "version": "0.0.1",
+  "author": "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
+  "description": "VLC Bindings",
+  "keywords": [ "vlc" ],
+  "homepage": "http://github.com/tjfontaine/node-vlc",
+  "bugs": {
+    "url": "http://github.com/tjfontaine/node-vlc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/tjfontaine/node-vlc.git"
+  },
+  "main": "vlc.js",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "dependencies": {
+    "ffi": "https://github.com/tjfontaine/node-ffi/tarball/searchpath"
+  },
+}
