@@ -45,6 +45,8 @@ var VLC = function () {
   this.mediaFromFile = function (path) {
     return new Media(instance, undefined, { path: path });
   };
+
+  this.mediaFields = require('./lib/media_enum').metaEnum;
 };
 
 module.exports = new VLC();
