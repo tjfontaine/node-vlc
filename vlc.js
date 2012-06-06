@@ -3,9 +3,10 @@ var lib = require('./lib/libvlc');
 
 var MediaPlayer = require('./lib/mediaplayer');
 var Media = require('./lib/media');
+var VLM = require('./lib/vlm');
 
 var VLC = function () {
-  var mediaplayer;
+  var mediaplayer, vlm;
   var released = false;
 
   instance = lib.libvlc_new(0, null);
@@ -19,10 +20,22 @@ var VLC = function () {
     },
   });
 
+  Object.defineProperty(this, 'vlm', {
+    get: function () {
+      if (!vlm) {
+        vlm = new VLM(instance);
+      }
+      return vlm;
+    },
+  });
+
   this.release = function () {
     if (!released) {
       if (mediaplayer) {
         mediaplayer.release();
+      }
+      if (vlm) {
+        vlm.release();
       }
       lib.libvlc_release(instance);
       released = true;
