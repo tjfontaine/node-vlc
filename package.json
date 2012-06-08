@@ -17,6 +17,8 @@
     "node": ">= 0.6.0"
   },
   "dependencies": {
-    "ffi": "https://github.com/tjfontaine/node-ffi/tarball/searchpath"
+    "ffi": "https://github.com/tjfontaine/node-ffi/tarball/searchpath",
+    "ref": ">= 0.0.17",
+    "ref-struct": ">= 0.0.3",
   }
 }
