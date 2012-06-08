@@ -11,11 +11,9 @@ var VLC = function (args) {
   var mediaplayer, vlm;
   var released = false;
 
-  var cargs = new Buffer(ref.refType(ref.types.char) * args.length);
+  var cargs = new Buffer(ref.sizeof.pointer * args.length);
   for (var i = 0; i < args.length; i++) {
-    var cstr = new Buffer(args[i].length + 1);
-    cstr.writeCString(args[i], 0, 'ascii');
-    cargs.writePointer(cstr.ref(), i * ref.sizeof.pointer);
+    cargs.writePointer(ref.allocCString(args[i]), i * ref.sizeof.pointer);
   }
 
   instance = lib.libvlc_new(args.length, cargs);
