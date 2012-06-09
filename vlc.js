@@ -8,6 +8,10 @@ var Media = require('./lib/media');
 var VLM = require('./lib/vlm');
 
 var VLC = function (args) {
+  if (!(this instanceof VLC)) {
+    return new VLC(args);
+  }
+
   var mediaplayer, vlm;
   var released = false;
 
@@ -56,4 +60,4 @@ var VLC = function (args) {
   this.mediaFields = require('./lib/media_enum').metaEnum;
 };
 
-module.exports = new VLC(['-I', 'dummy']);
+module.exports = VLC;
