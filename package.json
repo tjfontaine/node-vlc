@@ -2,7 +2,7 @@
   "name": "vlc",
   "version": "0.0.1",
   "author": "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
-  "description": "VLC Bindings",
+  "description": "VLC FFI Bindings",
   "keywords": [ "vlc" ],
   "homepage": "http://github.com/tjfontaine/node-vlc",
   "bugs": {
@@ -19,6 +19,7 @@
   "dependencies": {
     "ffi": "https://github.com/tjfontaine/node-ffi/tarball/searchpath",
     "ref": ">= 0.0.17",
-    "ref-struct": ">= 0.0.3"
+    "ref-struct": ">= 0.0.3",
+    "semver": ">= 1.0.14"
   }
 }
