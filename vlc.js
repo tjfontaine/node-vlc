@@ -56,6 +56,18 @@ var VLC = function (args) {
   this.mediaFromFile = function (path) {
     return new Media(instance, undefined, { path: path });
   };
+  
+  this.mediaFromUrl = function(url){
+    return new Media(instance, undefined, { url: url });
+  };
+
+  this.mediaFromFd = function(fd){
+    return new Media(instance, undefined, { fd: fd });
+  };
+
+  this.mediaFromNode = function(node){
+    return new Media(instance, undefined, node);
+  };
 
   this.mediaFields = require('./lib/media_enum').metaEnum;
 };
