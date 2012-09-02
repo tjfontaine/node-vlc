@@ -29,7 +29,7 @@ switch (os.platform()) {
     break;
   default:
     LIBRARY_PATHS.push('/usr/lib/libvlc.so');
-    LIBRARY_PATHS.push('/usr/lib/libvlc.5.so');
+    LIBRARY_PATHS.push('/usr/lib/libvlc.so.5');
     break;
 }
 
