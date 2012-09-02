@@ -1,15 +1,52 @@
+var os = require('os');
+var path = require('path');
+
 var FFI = require('ffi');
 var ref = require('ref');
 
-var lib = require('./lib/libvlc');
+var LIBRARY_PATHS = [];
 
-var MediaPlayer = require('./lib/mediaplayer');
-var Media = require('./lib/media');
-var VLM = require('./lib/vlm');
+switch (os.platform()) {
+  case 'darwin':
+    LIBRARY_PATHS.push('/Applications/VLC.app/Contents/MacOS/lib/libvlc.dylib');
+    LIBRARY_PATHS.push(path.join(process.env.HOME, 'Applications/VLC.app/Contents/MacOS/lib/libvlc.dylib'));
+    break;
+  case 'win32':
+    if (process.env['ProgramFiles(x86)']) {
+      LIBRARY_PATHS.push(path.join('',
+        process.env['ProgramFiles(x86)'],
+        'VideoLAN',
+        'VLC',
+        'libvlc.dll'
+      ));
+    }
+    LIBRARY_PATHS.push(path.join(
+      process.env['ProgramFiles'],
+      'VideoLAN',
+      'VLC',
+      'libvlc.dll'
+    ));
+    break;
+  default:
+    LIBRARY_PATHS.push('/usr/lib/libvlc.so');
+    LIBRARY_PATHS.push('/usr/lib/libvlc.5.so');
+    break;
+}
+
+exports.LIBRARY_PATHS = LIBRARY_PATHS;
+
+var lib, MediaPlayer, Media, VLM;
 
 var VLC = function (args) {
   if (!(this instanceof VLC)) {
     return new VLC(args);
+  }
+
+  if (!lib) {
+    lib = require('./lib/libvlc').initialize(LIBRARY_PATHS);
+    MediaPlayer = require('./lib/mediaplayer');
+    Media = require('./lib/media');
+    VLM = require('./lib/vlm');
   }
 
   var mediaplayer, vlm;
