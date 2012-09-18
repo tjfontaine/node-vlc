@@ -107,6 +107,52 @@ var VLC = function (args) {
   };
 
   this.mediaFields = require('./lib/media_enum').metaEnum;
+
+  Object.defineProperty(this, 'audio_filters', {
+    get: function() {
+      var ret = [], tmp, start;
+      start = tmp = lib.libvlc_audio_filter_list_get(instance);
+
+      while (!tmp.isNull()) {
+        tmp = tmp.deref();
+        ret.push({
+          name: tmp.psz_name,
+          shortname: tmp.psz_shortname,
+          longname: tmp.psz_longname,
+          help: tmp.psz_help,
+        });
+        tmp = tmp.p_next;
+      }
+
+      if (!start.isNull())
+        lib.libvlc_module_description_list_release(start);
+
+      return ret;
+    },
+  });
+
+  Object.defineProperty(this, 'video_filters', {
+    get: function() {
+      var ret = [], tmp, start;
+      start = tmp = lib.libvlc_video_filter_list_get(instance);
+
+      while (!tmp.isNull()) {
+        tmp = tmp.deref();
+        ret.push({
+          name: tmp.psz_name,
+          shortname: tmp.psz_shortname,
+          longname: tmp.psz_longname,
+          help: tmp.psz_help,
+        });
+        tmp = tmp.p_next;
+      }
+
+      if (!start.isNull())
+        lib.libvlc_module_description_list_release(start);
+
+      return ret;
+    },
+  });
 };
 
 module.exports = VLC;
