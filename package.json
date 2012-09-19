@@ -1,6 +1,6 @@
 {
   "name": "vlc",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
   "description": "VLC FFI Bindings",
   "keywords": [ "vlc" ],
