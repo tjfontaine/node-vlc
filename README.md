@@ -37,3 +37,16 @@ it necessarily match the node pattern.
 
 There is not much documentation at the moment, use the source luke. For that
 matter, there's not much documentation around libvlc either.
+
+Events
+------
+
+Currently you can attach to the following events
+ * Media -- odd bug, on osx you need to parseSync before attaching any handlers
+else the process freezes, I haven't investigated fully to understand why yet.
+   * `MetaChanged` - callback receives metadata field name that changed
+   * `SubItemAdded` - callback receives new media item
+   * `DurationChanged` - callback receives the new duration
+   * `ParsedChanged` - callback receives the new parsed state
+   * `Freed` - callback receives media item that was freed (wtf this seems like a bad idea)
+   * `StateChanged` - callback receives the new media state
