@@ -42,6 +42,7 @@ Events
 ------
 
 Currently you can attach to the following events
+
  * Media -- odd bug, on osx you need to parseSync before attaching any handlers
 else the process freezes, I haven't investigated fully to understand why yet.
    * `MetaChanged` - callback receives metadata field name that changed
@@ -50,3 +51,23 @@ else the process freezes, I haven't investigated fully to understand why yet.
    * `ParsedChanged` - callback receives the new parsed state
    * `Freed` - callback receives media item that was freed (wtf this seems like a bad idea)
    * `StateChanged` - callback receives the new media state
+ * MediaPlayer
+   * `MediaChanged` - no argument
+   * `NothingSpecial` - no argument
+   * `Opening` - no argument
+   * `Buffering` - callback receives percent full of cache
+   * `Playing` - no argument
+   * `Paused` - no argument
+   * `Stopped` - no argument
+   * `Forward` - no argument
+   * `Backward` - no argument
+   * `EndReached` - no argument
+   * `EncounteredError` - no argument
+   * `TimeChanged` - callback receives the new time (constantly update while playing)
+   * `PositionChanged` - callback receives new position (constantly updated while playing)
+   * `SeekableChanged` - callback receives truthy of seekable
+   * `PausableChanged` - callback receives truthy of pausable
+   * `TitleChanged` - callback receives truthy of title changed
+   * `SnapshotTaken` - no argument
+   * `LengthChanged` - no argument
+   * `Vout` - callback receives the new number of vout channels
