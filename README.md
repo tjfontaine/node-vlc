@@ -71,4 +71,3 @@ else the process freezes, I haven't investigated fully to understand why yet.
    * `SnapshotTaken` - no argument
    * `LengthChanged` - no argument
    * `Vout` - callback receives the new number of vout channels
-
