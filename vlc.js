@@ -33,7 +33,6 @@ switch (os.platform()) {
     break;
 }
 
-exports.LIBRARY_PATHS = LIBRARY_PATHS;
 
 var lib, MediaPlayer, Media, VLM;
 
@@ -45,12 +44,15 @@ var VLC = function (args) {
   if (!lib) {
     lib = require('./lib/libvlc').initialize(LIBRARY_PATHS);
     MediaPlayer = require('./lib/mediaplayer');
+    MediaListPlayer = require('./lib/medialistplayer');
+    MediaList = require('./lib/medialist');
     Media = require('./lib/media');
     VLM = require('./lib/vlm');
   }
 
-  var mediaplayer, vlm;
+  var mediaplayer, vlm, medialistplayer;
   var released = false;
+  var self=this;
 
   var cargs = new Buffer(ref.sizeof.pointer * args.length);
   for (var i = 0; i < args.length; i++) {
@@ -65,6 +67,17 @@ var VLC = function (args) {
         mediaplayer = new MediaPlayer(instance);
       }
       return mediaplayer;
+    },
+  });
+  
+  
+  Object.defineProperty(this, 'playlist', {
+    get: function () {
+      if (!medialistplayer) {
+        medialistplayer = new MediaListPlayer(instance, new MediaList(instance));
+		lib.libvlc_media_list_player_set_media_player(medialistplayer.instance, self.mediaplayer.instance);
+      }
+      return medialistplayer;
     },
   });
 
@@ -156,3 +169,5 @@ var VLC = function (args) {
 };
 
 module.exports = VLC;
+
+VLC.LIBRARY_PATHS = LIBRARY_PATHS;
