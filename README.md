@@ -1,3 +1,5 @@
+> **⚠️ This project is archived and no longer maintained.**
+
 node-vlc
 --------
 
@@ -71,4 +73,3 @@ else the process freezes, I haven't investigated fully to understand why yet.
    * `SnapshotTaken` - no argument
    * `LengthChanged` - no argument
    * `Vout` - callback receives the new number of vout channels
-
