@@ -48,6 +48,10 @@ var VLC = function (args) {
     Media = require('./lib/media');
     VLM = require('./lib/vlm');
   }
+  
+  if(!args) {
+    args = [];
+  }
 
   var mediaplayer, vlm;
   var released = false;
